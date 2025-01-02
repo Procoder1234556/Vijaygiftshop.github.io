@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vijay Gift Shop</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'helvetica neue', helvetica, arial, sans-serif;
+        }
+
+        :root {
+            --text-color: #8b8b8b;
+            --background-color: #141414;
+            --accent-color: #ffffff;
+            --hover-color: #ff5733;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            letter-spacing: 0.2em;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .full-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background-color);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .full-menu.active {
+            display: flex;
+        }
+
+        .menu-items {
+            text-align: center;
+        }
+
+        .menu-items a {
+            display: block;
+            font-size: 2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 2rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .menu-items a:hover {
+            color: var(--hover-color);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+
+        .products-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-item {
+            text-align: center;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+        }
+
+        .product-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .contact-button:hover {
+            background: var(--text-color);
+            color: var(--background-color);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-color);
+            background: #222;
+        }
+
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel img {
+            width: 100%;
+            flex-shrink: 0;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+        }
+
+        .testimonials {
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            margin: 1rem 0;
+            color: var(--accent-color);
+        }
+
+        .newsletter {
+            margin-top: 2rem;
+        }
+
+        .newsletter input {
+            padding: 0.5rem;
+            width: 70%;
+            margin-right: 1rem;
+        }
+
+        .newsletter button {
+            padding: 0.5rem 1rem;
+            background: var(--accent-color);
+            color: var(--background-color);
+            border: none;
+            cursor: pointer;
+        }
+
+        .footer-social {
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            margin: 0 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .footer-social a:hover {
+            color: var(--hover-color);
+        }
+
+        .map {
+            margin-top: 2rem;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+
+        .faq {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item h3 {
+            color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        .faq-item p {
+            display: none;
+            color: var(--text-color);
+        }
+
+        .blog-section {
+            margin-top: 2rem;
+        }
+
+        .blog-item {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .blog-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-item p {
+            color: var(--text-color);
+        }
+
+        /* Custom Cursor */
+        body {
+            cursor: url('https://via.placeholder.com/20x20.png'), auto;
+        }
+
+        /* Background Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0.9) 10%, transparent 90%);
+            pointer-events: none;
+            animation: pulse 5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home" class="logo">Vijay Gift Shop</a>
+        <div class="menu-toggle">Menu</div>
+    </nav>
+
+    <div class="full-menu">
+        <div class="menu-items">
+            <a href="#home">Home</a>
+            <a href="#offerings">What We Offer</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#faq">FAQ</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <section id="home" class="section">
+        <div class="carousel">
+            <img src="/api/placeholder/800/400" alt="Top Selling Item 1">
+            <img src="/api/placeholder/800/400" alt="Top Selling Item 2">
+            <img src="/api/placeholder/800/400" alt="Seasonal Highlight">
+        </div>
+        <h1 class="section-title">Welcome to Vijay Gift Shop</h1>
+        <p>Your One-Stop Destination for Gifts & More!</p>
+    </section>
+
+    <section id="offerings" class="section">
+        <h2 class="section-title">What We Offer</h2>
+        <div class="section-content">
+            <p>Explore our curated collections of gifts and products that bring joy, spirituality, and entertainment to life.</p>
+            <div class="products-list">
+                <div class="product-item">
+                    <img src="/mnt/data/ganesh-5998483_1280.jpg" alt="Religious Idols">
+                    <h3>Religious Idols</h3>
+                </div>
+                <div class="product-item">
+                    <img src="/mnt/data/wmremove-transformed.jpeg" alt="Sports Equipment">
+                    <h3>Sports Equipment</h3>
+                </div>
+                <div class="product-item">
+                    <img src="/api/placeholder/600/600" alt="Playing Cards">
+                    <h3>Playing Cards</h3>
+                </div>
+                <div class="product-item">
+                    <img src="/mnt/data/AdobeStock_657784351_Preview.jpeg" alt="Soft Toys">
+                    <h3>Soft Toys</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <h3>What types of gifts do you offer?</h3>
+                <p>We offer a wide range of gifts, including religious idols, sports equipment, playing cards, and more.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you provide home delivery?</h3>
+                <p>Yes, we provide home delivery for all our products. Please contact us for more details.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="section blog-section">
+        <h2 class="section-title">Latest News & Updates</h2>
+        <div class="blog-item">
+            <h3>How to Choose the Perfect Gift</h3>
+            <p>Learn tips and tricks to find the perfect gift for your loved ones.</p>
+        </div>
+        <div class="blog-item">
+            <h3>Top Trending Gifts of 2025</h3>
+            <p>Discover the hottest gift trends of the year!</p>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section">
+        <h2 class="section-title">Customer Testimonials</h2>
+        <div class="testimonials">
+            <p class="testimonial">"Fantastic selection of gifts!" - A Happy Customer</p>
+            <p class="testimonial">"Great quality and affordable prices." - Another Customer</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="section-title">Connect with Us</h2>
+        <div class="section-content">
+            <p>Email: vijaygiftshop12@gmail.com</p>
+            <p>Instagram: @vijaygiftshop</p>
+            <p>Facebook: Vijay Gift Shop</p>
+            <a href="mailto:vijaygiftshop12@gmail.com" class="contact-button">Contact Us</a>
+            <div class="newsletter">
+                <h3>Subscribe to Our Newsletter</h3>
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0861147921736!2d144.9646293156616!3d-37.80867197975198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b4f2aef15b%3A0xb18a9415e6c0bfc0!2sUtsubo%20Park!5e0!3m2!1sen!2sjp!4v1633911586451!5m2!1sen!2sjp"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Vijay Gift Shop. All Rights Reserved.</p>
+        <div class="footer-social">
+            <a href="https://facebook.com/vijaygiftshop" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://instagram.com/vijaygiftshop" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/vijaygiftshop" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const fullMenu = document.querySelector('.full-menu');
+
+        menuToggle.addEventListener('click', () => {
+            fullMenu.classList.toggle('active');
+            menuToggle.textContent = fullMenu.classList.contains('active') ? 'Close' : 'Menu';
+        });
+
+        const carousel = document.querySelector('.carousel');
+        const images = carousel.querySelectorAll('img');
+        let index = 0;
+
+        setInterval(() => {
+            images[index].style.transform = 'translateX(-100%)';
+            index = (index + 1) % images.length;
+            images[index].style.transform = 'translateX(0)';
+        }, 3000);
+
+        const faqItems = document.querySelectorAll('.faq-item h3');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const content = item.nextElementSibling;
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
