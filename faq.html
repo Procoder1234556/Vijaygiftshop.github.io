@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Vijay Gift Shop, Uttam Nagar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .faq-section {
+            max-width: 600px;
+            margin: auto;
+        }
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .faq-item h2 {
+            cursor: pointer;
+            color: #007BFF;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function toggleAnswer(event) {
+            const answer = event.nextElementSibling;
+            answer.style.display = answer.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</head>
+<body>
+
+<h1>Frequently Asked Questions</h1>
+
+<div class="faq-section">
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">What are the operating hours of Vijay Gift Shop?</h2>
+        <div class="faq-answer">Vijay Gift Shop operates from Monday to Saturday, Morning -(11:30 AM to 2:00 PM),Evening - .</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">Where is Vijay Gift Shop located?</h2>
+        <div class="faq-answer">The shop is located near Bedi Sweets in Uttam Nagar, New Delhi.</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">What types of products does Vijay Gift Shop offer?</h2>
+        <div class="faq-answer">We offer a variety of gift items including personalized gifts, stationery, and novelty items suitable for various occasions.</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">Do you provide gift wrapping services?</h2>
+        <div class="faq-answer">Yes, we offer gift wrapping services for an additional fee. Please ask at the counter when making your purchase.</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">How can I place an order?</h2>
+        <div class="faq-answer">Orders can be placed by visiting our shop in person or by calling us during business hours for assistance.</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">What payment methods do you accept?</h2>
+        <div class="faq-answer">We accept cash and UPI payments.</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">Do you offer delivery services?</h2>
+        <div class="faq-answer">Currently, we do not provide delivery services. All purchases must be picked up in-store.</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">What is your return policy?</h2>
+        <div class="faq-answer">We accept returns within 2 days of purchase if the item is unused and in its original packaging.</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">Can I exchange an item?</h2>
+        <div class="faq-answer">Yes, exchanges are allowed within 4 days of purchase as long as the item is in its original condition and unused..</div>
+    </div>
+
+    <div class="faq-item">
+        <h2 onclick="toggleAnswer(this)">How can I contact shop owner?</h2>
+        <div class="faq-answer">You can reach our shop owner team by reaching the shop during business hours.</div>
+    </div>
+</div>
+
+</body>
+</html>
